@@ -22,8 +22,8 @@ public class PartController {
         return partRepository.findOne(uuid);
     }
 
-    @PostMapping
-    public Part addPart(@RequestBody Part part) {
+    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
+    public Part savePart(@RequestBody Part part) {
         Part savedPart = partRepository.save(part);
         return savedPart;
     }
