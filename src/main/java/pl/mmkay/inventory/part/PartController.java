@@ -27,4 +27,9 @@ public class PartController {
         Part savedPart = partRepository.save(part);
         return savedPart;
     }
+
+    @DeleteMapping("{id}")
+    public void deletePartById(@PathVariable("id") UUID uuid) {
+        partRepository.delete(uuid);
+    }
 }
