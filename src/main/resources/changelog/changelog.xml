@@ -2,4 +2,19 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="20180204-01" author="mkulewicz">
+        <createTable tableName="part">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="part_name" type="text"/>
+            <column name="serial_number" type="text"/>
+            <column name="weight_kg" type="double"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="20180204-02" author="mkulewicz">
+        <addColumn tableName="part">
+            <column name="manufacturer" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
