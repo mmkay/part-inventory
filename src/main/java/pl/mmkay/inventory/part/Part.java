@@ -1,7 +1,6 @@
 package pl.mmkay.inventory.part;
 
-import org.hibernate.annotations.GenericGenerator;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,10 +8,12 @@ import java.util.UUID;
 
 @Entity
 public class Part {
+    public Part() {
+    }
+
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid",
-            strategy = "uuid")
+    @GeneratedValue
+    @Column( columnDefinition = "uuid", updatable = false )
     private UUID id;
 
     private String partName;
