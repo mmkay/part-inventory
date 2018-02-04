@@ -17,4 +17,32 @@
             <column name="manufacturer" type="text"/>
         </addColumn>
     </changeSet>
+    <changeSet id="20180204-03" author="mkulewicz">
+        <createTable tableName="part_compatibility">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="part1" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="part2" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="part_compatibility"
+                                 baseColumnNames="part1"
+                                 constraintName="fk_part_compatibility_part_1"
+                                 referencedTableName="part"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="part_compatibility"
+                                 baseColumnNames="part2"
+                                 constraintName="fk_part_compatibility_part_2"
+                                 referencedTableName="part"
+                                 referencedColumnNames="id"/>
+        <!-- https://github.com/liquibase/liquibase/pull/644 - addAutoIncrement doesn't work for postgres, fix in 3.5.4 -->
+        <sql>
+            CREATE SEQUENCE compatibility_id_seq;
+            ALTER TABLE part_compatibility ALTER id SET DEFAULT NEXTVAL('compatibility_id_seq');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

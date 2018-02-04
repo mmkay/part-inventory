@@ -8,8 +8,7 @@ import java.util.UUID;
 
 @Entity
 public class Part {
-    public Part() {
-    }
+    public Part() {}
 
     @Id
     @GeneratedValue
