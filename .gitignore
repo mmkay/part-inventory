@@ -25,3 +25,9 @@ nbdist/
 
 ### Maven ###
 .mvn
+
+### Docker ###
+.env
+
+### Spring ###
+application-dev.properties
