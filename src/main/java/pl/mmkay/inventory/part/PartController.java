@@ -31,6 +31,11 @@ public class PartController {
         return partRepository.save(part);
     }
 
+    @PutMapping("{id}")
+    public Part updatePart(@PathVariable("id") UUID uuid, @RequestBody Part part) {
+        return partRepository.save(part);
+    }
+
     @DeleteMapping("{id}")
     public void deletePartById(@PathVariable("id") UUID uuid) {
         partRepository.delete(uuid);
