@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -38,6 +39,11 @@ public class PartController {
 
     @DeleteMapping("{id}")
     public void deletePartById(@PathVariable("id") UUID uuid) {
+        Part removedPart = partRepository.findOne(uuid);
+        List<PartCompatibility> compatibleParts = partCompatibilityRepository.findByPart1OrPart2(
+                removedPart, removedPart
+        );
+        partCompatibilityRepository.delete(compatibleParts);
         partRepository.delete(uuid);
     }
 
